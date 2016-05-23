@@ -1,4 +1,4 @@
-var app = angular.module('unilever-foundry50', [
+var app = angular.module('bluemix-angular', [
     'ui.router'
 ]);
 
