@@ -10,16 +10,17 @@ app.config(function($urlRouterProvider, $stateProvider, $locationProvider) {
     $urlRouterProvider
         .otherwise('');
 
-    /*$stateProvider
+    $stateProvider
         .state('main', {
             url: '/',
-            templateUrl: 'app/overall.html',
-            controller: 'OverallCtrl'
-        })*/
+            templateUrl: 'app/routes/main/main.html',
+            controller: 'MainCtrl'
+        });
+
+    $stateProvider
+        .state('anotherstate', {
+            url: '/otherroute',
+            templateUrl: 'app/routes/notmain/notmain.html',
+            controller: 'NotMainCtrl'
+        });
 });
-
-app.controller('MainCtrl', ['$scope', '$stateParams', '$state',
-    function($scope, $stateParams, $state) {
-
-    }
-]);

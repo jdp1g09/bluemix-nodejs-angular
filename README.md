@@ -19,4 +19,4 @@ To run the app, from the cmd line call the following:
 
     npm start
     
-Then navigate to "localhost:6003" and you should see the app.
+Then navigate to "localhost:6001" and you should see the app.

@@ -8,12 +8,11 @@
 // for more info, see: http://expressjs.com
 
 var express = require('express');
+var path = require('path');
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
-
-var cloudant = require('./server/cloudant');
 
 var bodyParser = require('body-parser');
 
@@ -21,21 +20,20 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // require
-//require('./server/routes')(app);
+require('./api/routes')(app);
 
 // serve the files out of ./public as our main files
 //app.use(express.static(__dirname + '/public'));
 
 // static - all our js, css, images, etc go into the assets path
-app.use('/app', express.static(__dirname + '/public/app'));
-app.use('/bower_components', express.static(__dirname + '/public/bower_components'));
-app.use('/fonts', express.static(__dirname + '/public/fonts'));
-app.use('/stylesheets', express.static(__dirname + '/public/stylesheets'));
-app.use('/images', express.static(__dirname + '/public/images'));
+app.use('/app', express.static(path.join(__dirname, '../public', 'app')));
+app.use('/bower_components', express.static(path.join(__dirname, '../public', 'bower_components')));
+app.use('/assets', express.static(path.join(__dirname, '../public', 'assets')));
+app.use('/stylesheets', express.static(path.join(__dirname, '../public', 'stylesheets')));
 
 // This route deals enables HTML5Mode by forwarding missing files to the index.html
 app.all('/*', function(req, res) {
-    res.sendfile('./public/index.html');
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.use(bodyParser.json());
